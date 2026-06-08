@@ -80,6 +80,20 @@ src/
 ├── main.jsx                       # React entry point
 └── index.css                      # Global styles & Tailwind imports
 
+## Root Project Structure
 
-
-├── index.css
+milky-way-frontend/
+│
+├── public/
+│   ├── favicon.ico
+│   └── logo.png
+│
+├── src/
+│   └── ...
+│
+├── .env                           # Environment variables
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+└── README.md
