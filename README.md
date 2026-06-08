@@ -20,7 +20,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 #Folder Structure of our Application
-
 src/
 
 ├── assets/
@@ -79,4 +78,27 @@ src/
 │
 ├── App.jsx
 ├── main.jsx
+├── index.css
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ├── index.css
