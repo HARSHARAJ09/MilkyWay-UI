@@ -19,46 +19,64 @@ The React Compiler is not enabled on this template because of its impact on dev 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
 
-#Folder Structure of our Application
+## Folder Structure of our Application
 src/
-
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   ├── css/
-│   │   ├── variables.css
-│   │   ├── common.css
+├── assets/                  # Static assets
+│   ├── images/              # Graphic images and banners
+│   ├── icons/               # SVG/Image icons
+│   └── css/                 # Global styling sheets
+│       ├── variables.css    # CSS custom properties (design tokens)
+│       └── common.css       # Utility classes and global styles
 │
-├── components/
-│   ├── Navbar.jsx
-│   ├── Footer.jsx
-│   ├── ProductCard.jsx
-│   ├── SubscriptionCard.jsx
-│   ├── Loader.jsx
+├── components/              # Reusable presentation components
+│   ├── Navbar.jsx           # Global navigation header
+│   ├── Footer.jsx           # Global footer
+│   ├── ProductCard.jsx      # Individual product display card
+│   ├── SubscriptionCard.jsx # Subscription plan display card
+│   └── Loader.jsx           # Global loading spinner
 │
-├── pages/
-│   ├── Home.jsx
-│   ├── Products.jsx
-│   ├── ProductDetails.jsx
-│   ├── Cart.jsx
-│   ├── Checkout.jsx
-│   ├── Orders.jsx
-│   ├── Subscriptions.jsx
-│   ├── Login.jsx
-│   ├── Register.jsx
-│   ├── Profile.jsx
+├── pages/                   # Application views/screens (routed)
+│   ├── Home.jsx             # Landing page
+│   ├── Products.jsx         # Product listing page
+│   ├── ProductDetails.jsx   # Detailed single product view
+│   ├── Cart.jsx             # Shopping cart summary
+│   ├── Checkout.jsx         # Payment and shipping forms
+│   ├── Orders.jsx           # User order history
+│   ├── Subscriptions.jsx    # User active/past subscriptions
+│   ├── Login.jsx / Register.jsx # Authentication pages
+│   └── Profile.jsx          # User account settings
 │
-├── services/
-│   ├── api.js
-│   ├── authService.js
-│   ├── productService.js
-│   ├── cartService.js
-│   ├── orderService.js
-│   ├── subscriptionService.js
-│   ├── paymentService.js
+├── services/                # API communication layer
+│   ├── api.js               # Axios/Fetch base configuration
+│   ├── authService.js       # Auth endpoints (Login, Signup, Logout)
+│   ├── productService.js   # Product data fetching
+│   ├── cartService.js       # Cart backend sync
+│   ├── orderService.js      # Order processing endpoints
+│   ├── subscriptionService.js # Subscription billing endpoints
+│   └── paymentService.js    # Payment gateway integrations
 │
-├── layouts/
-│   ├── AppWrapper.jsx
+├── layouts/                 # Page layouts wrappers
+│   └── AppWrapper.jsx       # Global layout wrapper (Navbar, Footer, Toast containers)
+│
+├── routes/                  # Routing logic and guards
+│   └── ProtectedRoute.jsx   # Route guard for authenticated users
+│
+├── context/                 # React Context providers for global state
+│   └── AuthContext.jsx      # Manages user session and authentication state
+│
+├── hooks/                   # Custom reusable React hooks
+│   └── useAuth.js           # Shortcut hook for accessing AuthContext
+│
+├── data/                    # Local mock data for development
+│   └── dummyProducts.js     # Mock product JSON data
+│
+├── utils/                   # Helper functions and constants
+│   ├── constants.js         # Application-wide static constants
+│   └── helpers.js           # Shared utility functions (formatting, validation)
+│
+├── App.jsx                  # Main application router setup
+├── main.jsx                 # Application entry point
+└── index.css                # Global entry-level styles
 │
 ├── routes/
 │   ├── ProtectedRoute.jsx
