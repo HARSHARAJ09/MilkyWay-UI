@@ -18,8 +18,28 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+<pre>
+## 📁 Root Project Structure
 
-## Folder Structure
+milky-way-frontend/
+│
+├── public/
+│   ├── favicon.ico
+│   └── logo.png
+│
+├── src/
+│   └── ...
+│
+├── .env                           # Environment variables
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+└── README.md
+</pre>
+
+## 📁 Folder Structure
+<pre>
 src/
 │
 ├── assets/
@@ -79,21 +99,4 @@ src/
 ├── App.jsx                        # Main routing configuration
 ├── main.jsx                       # React entry point
 └── index.css                      # Global styles & Tailwind imports
-
-## Root Project Structure
-
-milky-way-frontend/
-│
-├── public/
-│   ├── favicon.ico
-│   └── logo.png
-│
-├── src/
-│   └── ...
-│
-├── .env                           # Environment variables
-├── .gitignore
-├── package.json
-├── vite.config.js
-├── eslint.config.js
-└── README.md
+</pre>
