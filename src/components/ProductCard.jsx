@@ -52,6 +52,15 @@ const ProductCard = ({
 				View Details
 
 			</button>
+            <button
+	onClick={() =>
+		addToCart(
+			product.id)
+	}>
+
+	Add To Cart
+
+</button>
 
 		</div>
 	);

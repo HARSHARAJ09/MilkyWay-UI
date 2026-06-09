@@ -37,3 +37,22 @@
 
 	gap: 20px;
 }
+@media(max-width:768px) {
+
+	.hero-content h1 {
+
+		font-size: 2rem;
+	}
+
+	.product-grid {
+
+		grid-template-columns:
+			1fr;
+	}
+
+	.category-grid {
+
+		grid-template-columns:
+			1fr;
+	}
+}

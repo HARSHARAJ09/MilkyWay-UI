@@ -1,6 +1,6 @@
 .hero {
 
-	height: 80vh;
+	min-height: 90vh;
 
 	display: flex;
 
@@ -10,9 +10,13 @@
 
 	background:
 		linear-gradient(
-			135deg,
-			#4CAF50,
-			#81C784);
+			rgba(76,175,80,0.85),
+			rgba(56,142,60,0.85)),
+		url("/images/milk-hero.jpg");
+
+	background-size: cover;
+
+	background-position: center;
 
 	color: white;
 
