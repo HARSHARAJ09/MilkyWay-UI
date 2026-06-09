@@ -1,0 +1,40 @@
+.why-section {
+
+	padding: 70px 8%;
+
+	background-color: #F5FFF5;
+}
+
+.why-section h2 {
+
+	text-align: center;
+
+	margin-bottom: 40px;
+}
+
+.why-grid {
+
+	display: grid;
+
+	grid-template-columns:
+		repeat(
+			auto-fit,
+			minmax(
+				220px,
+				1fr));
+
+	gap: 25px;
+}
+
+.why-card {
+
+	background: white;
+
+	padding: 25px;
+
+	border-radius: 12px;
+
+	text-align: center;
+
+	box-shadow: var(--box-shadow);
+}

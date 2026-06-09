@@ -1,0 +1,53 @@
+.register-page {
+
+	height: 100vh;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-items: center;
+}
+
+.register-form {
+
+	width: 450px;
+
+	padding: 30px;
+
+	background-color: white;
+
+	border-radius: 10px;
+
+	box-shadow: var(--box-shadow);
+
+	display: flex;
+
+	flex-direction: column;
+
+	gap: 15px;
+}
+
+.register-form input {
+
+	padding: 12px;
+
+	border: 1px solid var(--border-color);
+
+	border-radius: 5px;
+}
+
+.register-form button {
+
+	padding: 12px;
+
+	background-color: var(--primary-color);
+
+	color: rgb(215, 29, 29);
+
+	border: none;
+
+	border-radius: 5px;
+
+	cursor: pointer;
+}

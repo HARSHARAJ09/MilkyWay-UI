@@ -1,0 +1,51 @@
+.categories-section {
+
+	padding: 70px 8%;
+}
+
+.categories-section h2 {
+
+	text-align: center;
+
+	margin-bottom: 35px;
+}
+
+.categories-grid {
+
+	display: grid;
+
+	grid-template-columns:
+		repeat(
+			auto-fit,
+			minmax(
+				180px,
+				1fr));
+
+	gap: 20px;
+}
+
+.category-box {
+
+	background: white;
+
+	padding: 30px;
+
+	border-radius: 10px;
+
+	text-align: center;
+
+	font-weight: bold;
+
+	box-shadow: var(--box-shadow);
+
+	cursor: pointer;
+
+	transition: 0.3s;
+}
+
+.category-box:hover {
+
+	background-color: var(--primary-color);
+
+	color: white;
+}
