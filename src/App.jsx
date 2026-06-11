@@ -15,6 +15,7 @@ import ProductDetails from "./pages/ProductDetails";
 import OrderSuccess from "./pages/OrderSuccess";
 import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
 
@@ -113,6 +114,17 @@ const App = () => {
       </div>
     </ProtectedRoute>
   }
+/>
+
+<Route
+	path="/dashboard"
+	element={
+		<ProtectedRoute>
+
+			<Dashboard />
+
+		</ProtectedRoute>
+	}
 />
 
    </Routes>

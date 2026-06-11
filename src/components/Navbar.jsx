@@ -119,6 +119,13 @@ const Navbar = () => {
 					</Link>
 				</li>
 
+				<Link
+	to="/dashboard">
+
+	Dashboard
+
+</Link>
+
 			</ul>
 
 			<ProfileDropdown />

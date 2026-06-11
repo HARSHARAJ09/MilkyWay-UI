@@ -91,6 +91,19 @@ const Profile = () => {
 
 			</h1>
 
+			<button
+
+	className="add-address-btn"
+
+	onClick={() =>
+		setEditingAddress(
+			null)
+	}>
+
+	Add New Address
+
+</button>
+
 			<AddressForm
 
 				onSubmit={

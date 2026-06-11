@@ -47,3 +47,56 @@
 
 	cursor: pointer;
 }
+.address-section {
+
+	margin-bottom: 30px;
+}
+
+.checkout-address {
+
+	padding: 15px;
+
+	border: 2px solid #ddd;
+
+	border-radius: 10px;
+
+	margin-bottom: 15px;
+
+	cursor: pointer;
+
+	transition: 0.3s;
+}
+
+.checkout-address:hover {
+
+	border-color:
+		var(--primary-color);
+}
+
+.checkout-address.selected {
+
+	border-color:
+		var(--primary-color);
+
+	background-color:
+		#f0fff4;
+}
+.no-address {
+
+	text-align: center;
+
+	padding: 25px;
+
+	background-color: white;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+
+	margin-bottom: 20px;
+}
+
+.no-address h3 {
+
+	color: #dc3545;
+}
