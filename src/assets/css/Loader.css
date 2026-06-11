@@ -1,3 +1,7 @@
+/* =========================
+   LOADER CONTAINER
+========================= */
+
 .loader-container {
 
 	display: flex;
@@ -6,33 +10,110 @@
 
 	align-items: center;
 
-	padding: 50px;
+	min-height: 300px;
+
+	width: 100%;
 }
+
+/* =========================
+   WRAPPER
+========================= */
+
+.loader-wrapper {
+
+	display: flex;
+
+	flex-direction: column;
+
+	align-items: center;
+
+	justify-content: center;
+}
+
+/* =========================
+   LOADER SPINNER
+========================= */
 
 .loader {
 
-	width: 50px;
+	width: 70px;
 
-	height: 50px;
+	height: 70px;
 
-	border: 5px solid #E0E0E0;
+	border:
+		6px solid
+		var(--light-green);
 
-	border-top: 5px solid #4CAF50;
+	border-top:
+		6px solid
+		var(--primary-green);
 
 	border-radius: 50%;
 
-	animation: spin 1s linear infinite;
+	animation:
+		spin 1s linear infinite;
+
+	margin-bottom: 20px;
 }
+
+/* =========================
+   TEXT
+========================= */
+
+.loader-wrapper h3 {
+
+	color:
+		var(--dark-green);
+
+	font-size: 1.3rem;
+
+	font-weight: 700;
+
+	margin-bottom: 8px;
+}
+
+.loader-wrapper p {
+
+	color:
+		var(--text-color);
+
+	font-size: 14px;
+}
+
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes spin {
 
 	from {
 
-		transform: rotate(0deg);
+		transform:
+			rotate(0deg);
 	}
 
 	to {
 
-		transform: rotate(360deg);
+		transform:
+			rotate(360deg);
+	}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.loader {
+
+		width: 60px;
+
+		height: 60px;
+	}
+
+	.loader-wrapper h3 {
+
+		font-size: 1.1rem;
 	}
 }

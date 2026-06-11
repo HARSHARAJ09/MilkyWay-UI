@@ -1,5 +1,10 @@
 import React from "react";
 
+import {
+	FaSearch
+}
+from "react-icons/fa";
+
 import "../assets/css/SearchBar.css";
 
 const SearchBar = ({
@@ -9,20 +14,31 @@ const SearchBar = ({
 
 	return (
 
-		<input className="search-input"
+		<div
+			className="search-container">
 
-			type="text"
+			<FaSearch
+				className="search-icon"
+			/>
 
-			placeholder="Search Milk, Paneer, Ghee..."
+			<input
 
-			value={search}
+				className="search-input"
 
-			onChange={(event) =>
+				type="text"
 
-				setSearch(
-					event.target.value)
-			}
-		/>
+				placeholder="Search Milk, Curd, Paneer, Ghee..."
+
+				value={search}
+
+				onChange={(event) =>
+					setSearch(
+						event.target.value
+					)
+				}
+			/>
+
+		</div>
 	);
 };
 

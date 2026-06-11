@@ -1,23 +1,235 @@
+/* =========================
+   CATEGORY CARD
+========================= */
+
 .category-card {
 
-	padding: 25px;
+	position: relative;
 
-	background: white;
+	background:
+		var(--white);
 
-	border-radius: 10px;
+	padding: 30px 25px;
 
-	box-shadow: var(--box-shadow);
+	border-radius: 20px;
 
 	text-align: center;
 
 	cursor: pointer;
 
+	overflow: hidden;
+
+	border:
+		1px solid #edf2ed;
+
+	box-shadow:
+		var(--card-shadow);
+
+	transition: all 0.35s ease;
+
+	min-height: 190px;
+
+	display: flex;
+
+	flex-direction: column;
+
+	align-items: center;
+
+	justify-content: center;
+}
+
+/* =========================
+   TOP GLOW EFFECT
+========================= */
+
+.category-card::before {
+
+	content: "";
+
+	position: absolute;
+
+	top: -50px;
+
+	right: -50px;
+
+	width: 120px;
+
+	height: 120px;
+
+	border-radius: 50%;
+
+	background:
+		rgba(
+			76,
+			175,
+			80,
+			0.08
+		);
+
+	transition: 0.4s;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.category-icon {
+
+	width: 70px;
+
+	height: 70px;
+
+	border-radius: 50%;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+	background:
+		var(--light-green);
+
+	color:
+		var(--primary-green);
+
+	font-size: 1.8rem;
+
+	margin-bottom: 18px;
+
 	transition: 0.3s;
 }
 
+/* =========================
+   TITLE
+========================= */
+
+.category-title {
+
+	font-size: 1.2rem;
+
+	font-weight: 700;
+
+	color:
+		var(--dark-text);
+
+	margin-bottom: 8px;
+
+	transition: 0.3s;
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.category-subtitle {
+
+	font-size: 14px;
+
+	color: #777;
+
+	line-height: 1.6;
+
+	transition: 0.3s;
+}
+
+/* =========================
+   HOVER EFFECT
+========================= */
+
 .category-card:hover {
 
-	background-color: var(--primary-color);
+	transform:
+		translateY(-8px);
+
+	box-shadow:
+		0 20px 40px
+		rgba(
+			0,
+			0,
+			0,
+			0.08
+		);
+
+	border-color:
+		var(--primary-green);
+}
+
+.category-card:hover::before {
+
+	transform:
+		scale(1.5);
+}
+
+.category-card:hover .category-icon {
+
+	background:
+		var(--primary-green);
 
 	color: white;
+}
+
+.category-card:hover .category-title {
+
+	color:
+		var(--primary-green);
+}
+
+/* =========================
+   ACTIVE STATE
+========================= */
+
+.category-card.active {
+
+	border-color:
+		var(--primary-green);
+
+	background:
+		#f8fff8;
+}
+
+.category-card.active .category-title {
+
+	color:
+		var(--dark-green);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+
+	.category-card {
+
+		min-height: 170px;
+	}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.category-card {
+
+		padding: 25px 20px;
+
+		min-height: 160px;
+	}
+
+	.category-icon {
+
+		width: 60px;
+
+		height: 60px;
+
+		font-size: 1.5rem;
+	}
+
+	.category-title {
+
+		font-size: 1.05rem;
+	}
 }

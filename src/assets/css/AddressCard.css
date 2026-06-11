@@ -1,0 +1,218 @@
+/* =========================
+   ADDRESS CARD
+========================= */
+
+.address-card {
+
+	position: relative;
+
+	background:
+		var(--white);
+
+	padding: 25px;
+
+	border-radius: 20px;
+
+	box-shadow:
+		var(--card-shadow);
+
+	border:
+		1px solid #edf2ed;
+
+	transition: 0.3s ease;
+
+	overflow: hidden;
+}
+
+.address-card:hover {
+
+	transform:
+		translateY(-6px);
+
+	box-shadow:
+		0 15px 35px
+		rgba(
+			0,
+			0,
+			0,
+			0.08
+		);
+}
+
+/* =========================
+   DEFAULT BADGE
+========================= */
+
+.default-badge {
+
+	position: absolute;
+
+	top: 15px;
+
+	right: 15px;
+
+	background:
+		var(--primary-green);
+
+	color: white;
+
+	padding: 6px 12px;
+
+	border-radius: 20px;
+
+	font-size: 12px;
+
+	font-weight: 600;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.address-icon {
+
+	width: 60px;
+
+	height: 60px;
+
+	border-radius: 50%;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+	background:
+		var(--light-green);
+
+	color:
+		var(--primary-green);
+
+	font-size: 1.5rem;
+
+	margin-bottom: 15px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.address-card h3 {
+
+	color:
+		var(--dark-green);
+
+	margin-bottom: 12px;
+
+	font-size: 1.1rem;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.address-card p {
+
+	display: flex;
+
+	align-items: center;
+
+	gap: 8px;
+
+	margin-bottom: 10px;
+
+	color:
+		var(--text-color);
+
+	font-size: 14px;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.address-actions {
+
+	display: flex;
+
+	gap: 10px;
+
+	margin-top: 20px;
+}
+
+.address-actions button {
+
+	flex: 1;
+
+	border: none;
+
+	padding: 10px;
+
+	border-radius: 10px;
+
+	cursor: pointer;
+
+	font-weight: 600;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+	gap: 8px;
+
+	transition: 0.3s;
+}
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.edit-btn {
+
+	background:
+		var(--primary-green);
+
+	color: white;
+}
+
+.edit-btn:hover {
+
+	background:
+		var(--dark-green);
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-btn {
+
+	background:
+		#fff3f3;
+
+	color:
+		var(--danger-color);
+}
+
+.delete-btn:hover {
+
+	background:
+		var(--danger-color);
+
+	color: white;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.address-actions {
+
+		flex-direction: column;
+	}
+}

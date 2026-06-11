@@ -1,5 +1,6 @@
 import React,
 {
+	useEffect,
 	useState
 }
 from "react";
@@ -9,6 +10,9 @@ import {
 }
 from "react-router-dom";
 
+import userService
+	from "../services/userService";
+
 import "../assets/css/ProfileDropdown.css";
 
 const ProfileDropdown = () => {
@@ -17,51 +21,201 @@ const ProfileDropdown = () => {
 		setOpen] =
 		useState(false);
 
+	const [user,
+		setUser] =
+		useState(null);
+
+	const role =
+		localStorage.getItem(
+			"role"
+		);
+
+	useEffect(() => {
+
+		loadProfile();
+
+	}, []);
+
+	const loadProfile =
+		async () => {
+
+			try {
+
+				const response =
+					await userService
+						.getProfile();
+
+				setUser(
+					response.data
+				);
+
+			} catch (error) {
+
+				console.log(
+					error
+				);
+			}
+		};
+
+	const closeDropdown =
+		() => {
+
+			setOpen(false);
+		};
+
+	const avatarLetter =
+
+		user?.firstName
+
+			?.charAt(0)
+
+			.toUpperCase()
+
+		||
+
+		"U";
+
 	return (
 
-		<div className="profile-dropdown">
+		<div
+			className="profile-dropdown">
 
 			<button
 
 				className="profile-btn"
 
 				onClick={() =>
-					setOpen(!open)
+					setOpen(
+						!open
+					)
 				}>
 
-				Profile
+				<div
+					className="profile-avatar-small">
+
+					{
+						avatarLetter
+					}
+
+				</div>
+
+				<span>
+
+					{
+						user?.firstName
+						||
+
+						"Account"
+					}
+
+				</span>
 
 			</button>
 
 			{
-				open && (
+				open &&
+
+				<div
+					className="dropdown-menu">
 
 					<div
-						className="dropdown-menu">
+						className="dropdown-user">
 
-						<Link
-							to="/profile">
+						<div
+							className="dropdown-avatar">
 
-							My Profile
+							{
+								avatarLetter
+							}
 
-						</Link>
+						</div>
 
-						<Link
-							to="/orders">
+						<div>
 
-							My Orders
+							<h4>
 
-						</Link>
+								{
+									user?.firstName
+								}
 
-						<Link
-							to="/subscriptions">
+								{" "}
 
-							Subscriptions
+								{
+									user?.lastName
+								}
 
-						</Link>
+							</h4>
+
+							<p>
+
+								{
+									user?.email
+								}
+
+							</p>
+
+						</div>
 
 					</div>
-				)
+
+					<Link
+						to="/dashboard"
+						onClick={
+							closeDropdown
+						}>
+
+						Dashboard
+
+					</Link>
+
+					<Link
+						to="/profile"
+						onClick={
+							closeDropdown
+						}>
+
+						My Profile
+
+					</Link>
+
+					<Link
+						to="/orders"
+						onClick={
+							closeDropdown
+						}>
+
+						My Orders
+
+					</Link>
+
+					<Link
+						to="/subscriptions"
+						onClick={
+							closeDropdown
+						}>
+
+						Subscriptions
+
+					</Link>
+
+					{
+						role ===
+						"ROLE_ADMIN"
+
+						&&
+
+						<Link
+							to="/admin"
+							onClick={
+								closeDropdown
+							}>
+
+							Admin Dashboard
+
+						</Link>
+					}
+
+				</div>
 			}
 
 		</div>

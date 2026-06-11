@@ -1,128 +1,330 @@
-import React, { useState } from "react";
+import React,
+{
+	useState
+}
+from "react";
 
-import { useNavigate } from "react-router-dom";
+import {
+	Link,
+	useNavigate
+}
+from "react-router-dom";
 
-import authService from "../services/authService";
+import {
+	FaEye,
+	FaEyeSlash
+}
+from "react-icons/fa";
+
+import authService
+	from "../services/authService";
 
 import "../assets/css/Register.css";
 
 const Register = () => {
 
-	const navigate = useNavigate();
+	const navigate =
+		useNavigate();
 
-	const [formData, setFormData] = useState({
+	const [showPassword,
+		setShowPassword] =
+		useState(false);
 
-		firstName: "",
+	const [loading,
+		setLoading] =
+		useState(false);
 
-		lastName: "",
+	const [error,
+		setError] =
+		useState("");
 
-		email: "",
+	const [success,
+		setSuccess] =
+		useState("");
 
-		phone: "",
+	const [formData,
+		setFormData] =
+		useState({
 
-		password: ""
-	});
+			firstName: "",
 
-	const [message, setMessage] = useState("");
+			lastName: "",
 
-	const handleChange = (event) => {
+			email: "",
 
-		setFormData({
+			phone: "",
 
-			...formData,
-
-			[event.target.name]:
-				event.target.value
+			password: ""
 		});
-	};
 
-	const handleSubmit = async (event) => {
+	const handleChange =
+		(event) => {
 
-		event.preventDefault();
+			setFormData({
 
-		try {
+				...formData,
 
-			const response =
-				await authService.register(
-						formData);
+				[event.target.name]:
+					event.target.value
+			});
+		};
 
-			setMessage(response.data);
+	const handleSubmit =
+		async (event) => {
 
-			setTimeout(() => {
+			event.preventDefault();
 
-				navigate("/");
+			setError("");
 
-			}, 2000);
+			setSuccess("");
 
-		} catch (error) {
+			try {
 
-			setMessage(
-				"Registration Failed");
-		}
-	};
+				setLoading(true);
+
+				const response =
+					await authService
+						.register(
+							formData
+						);
+
+				setSuccess(
+					response.data
+				);
+
+				setTimeout(() => {
+
+					navigate("/");
+
+				}, 2000);
+
+			} catch (error) {
+
+				setError(
+
+					error.response?.data ||
+
+					"Registration Failed"
+				);
+
+			} finally {
+
+				setLoading(false);
+			}
+		};
 
 	return (
 
 		<div className="register-page">
 
 			<form
-				onSubmit={handleSubmit}
-				className="register-form">
+				className="register-form"
+				onSubmit={handleSubmit}>
 
 				<h2>
-					Milky-Way Register
+
+					Create Account
+
 				</h2>
 
+				<p className="subtitle">
+
+					Join Milky-Way Dairy
+
+				</p>
+
 				{
-					message &&
-					<p>{message}</p>
+					error &&
+
+					<div className="alert error">
+
+						{error}
+
+					</div>
 				}
 
-				<input
-					type="text"
-					name="firstName"
-					placeholder="First Name"
-					onChange={handleChange}
-					required
-				/>
+				{
+					success &&
+
+					<div className="alert success">
+
+						{success}
+
+					</div>
+				}
+
+				<div className="name-row">
+
+					<input
+
+						type="text"
+
+						name="firstName"
+
+						placeholder="First Name"
+
+						value={
+							formData.firstName
+						}
+
+						onChange={
+							handleChange
+						}
+
+						required
+					/>
+
+					<input
+
+						type="text"
+
+						name="lastName"
+
+						placeholder="Last Name"
+
+						value={
+							formData.lastName
+						}
+
+						onChange={
+							handleChange
+						}
+
+						required
+					/>
+
+				</div>
 
 				<input
-					type="text"
-					name="lastName"
-					placeholder="Last Name"
-					onChange={handleChange}
-					required
-				/>
 
-				<input
 					type="email"
+
 					name="email"
-					placeholder="Email"
-					onChange={handleChange}
+
+					placeholder="Email Address"
+
+					value={
+						formData.email
+					}
+
+					onChange={
+						handleChange
+					}
+
 					required
 				/>
 
 				<input
-					type="text"
+
+					type="tel"
+
 					name="phone"
+
 					placeholder="Phone Number"
-					onChange={handleChange}
+
+					value={
+						formData.phone
+					}
+
+					onChange={
+						handleChange
+					}
+
 					required
 				/>
 
-				<input
-					type="password"
-					name="password"
-					placeholder="Password"
-					onChange={handleChange}
-					required
-				/>
+				<div className="password-wrapper">
 
-				<button type="submit">
+					<input
 
-					Register
+						type={
+							showPassword
+
+							?
+
+							"text"
+
+							:
+
+							"password"
+						}
+
+						name="password"
+
+						placeholder="Password"
+
+						value={
+							formData.password
+						}
+
+						onChange={
+							handleChange
+						}
+
+						required
+					/>
+
+					<button
+
+						type="button"
+
+						className="toggle-password"
+
+						onClick={() =>
+							setShowPassword(
+								!showPassword
+							)
+						}>
+
+						{
+							showPassword
+
+							?
+
+							<FaEyeSlash />
+
+							:
+
+							<FaEye />
+						}
+
+					</button>
+
+				</div>
+
+				<button
+
+					type="submit"
+
+					className="register-btn"
+
+					disabled={loading}>
+
+					{
+						loading
+
+						?
+
+						"Creating Account..."
+
+						:
+
+						"Register"
+					}
 
 				</button>
+
+				<p className="login-link">
+
+					Already have an account?
+
+					<Link to="/">
+
+						Login
+
+					</Link>
+
+				</p>
 
 			</form>
 

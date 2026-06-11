@@ -1,13 +1,60 @@
+/* =========================
+   PRODUCTS PAGE
+========================= */
+
+.products-page {
+
+	padding: 2rem 5%;
+
+	min-height: 100vh;
+
+	background:
+		var(--light-green-bg);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.products-header {
+
+	text-align: center;
+
+	margin-bottom: 2rem;
+}
+
+.products-header h1 {
+
+	color:
+		var(--primary-green);
+
+	font-size: 2.2rem;
+
+	margin-bottom: 0.5rem;
+}
+
+.products-header p {
+
+	color:
+		var(--text-dark);
+
+	font-size: 1rem;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
 .products-layout {
 
 	display: grid;
 
 	grid-template-columns:
-		250px 1fr;
+		260px 1fr;
 
-	gap: 20px;
+	gap: 1.5rem;
 
-	padding: 30px;
+	align-items: start;
 }
 
 .products-content {
@@ -15,25 +62,136 @@
 	width: 100%;
 }
 
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.products-info {
+
+	display: flex;
+
+	justify-content: space-between;
+
+	align-items: center;
+
+	margin: 1rem 0;
+
+	font-weight: 600;
+
+	color:
+		var(--text-dark);
+}
+
+/* =========================
+   GRID
+========================= */
+
 .product-grid {
 
 	display: grid;
 
 	grid-template-columns:
 		repeat(
-			auto-fit,
+			auto-fill,
 			minmax(
-				250px,
-				1fr));
+				260px,
+				1fr
+			)
+		);
 
-	gap: 20px;
+	gap: 1.5rem;
 }
 
-@media(max-width:768px) {
+/* =========================
+   STATES
+========================= */
+
+.loading-state,
+.error-state,
+.empty-state {
+
+	background:
+		var(--white-color);
+
+	padding: 2rem;
+
+	border-radius: 12px;
+
+	text-align: center;
+
+	box-shadow:
+		var(--box-shadow);
+}
+
+.loading-state {
+
+	color:
+		var(--primary-green);
+
+	font-weight: 600;
+}
+
+.error-state {
+
+	color:
+		var(--danger-color);
+
+	font-weight: 600;
+}
+
+.empty-state h3 {
+
+	color:
+		var(--primary-green);
+
+	margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+
+	color:
+		var(--text-dark);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
 
 	.products-layout {
 
 		grid-template-columns:
 			1fr;
+	}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.products-page {
+
+		padding: 1rem;
+	}
+
+	.products-header h1 {
+
+		font-size: 1.8rem;
+	}
+
+	.product-grid {
+
+		grid-template-columns:
+			1fr;
+	}
+
+	.products-info {
+
+		justify-content: center;
+
+		text-align: center;
 	}
 }

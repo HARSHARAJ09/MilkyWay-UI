@@ -1,49 +1,110 @@
 import React from "react";
 
+import {
+	FaGlassWhiskey,
+	FaCheese,
+	FaCookieBite
+}
+from "react-icons/fa";
+
+import {
+	GiButter,
+	GiMilkCarton,
+	GiCakeSlice
+}
+from "react-icons/gi";
+
 import "../assets/css/FeaturedCategories.css";
 
 const FeaturedCategories = () => {
 
 	const categories = [
 
-		"Milk",
+		{
+			name: "Milk",
+			icon: <GiMilkCarton />
+		},
 
-		"Curd",
+		{
+			name: "Curd",
+			icon: <FaGlassWhiskey />
+		},
 
-		"Paneer",
+		{
+			name: "Paneer",
+			icon: <FaCheese />
+		},
 
-		"Butter",
+		{
+			name: "Butter",
+			icon: <GiButter />
+		},
 
-		"Ghee",
+		{
+			name: "Ghee",
+			icon: <GiCakeSlice />
+		},
 
-		"Cheese"
+		{
+			name: "Cheese",
+			icon: <FaCookieBite />
+		}
 	];
 
 	return (
 
-		<section className="categories-section">
+		<section
+			className="featured-categories">
 
-			<h2>
+			<div
+				className="section-header">
 
-				Shop By Category
+				<h2>
 
-			</h2>
+					Popular Categories
 
-			<div className="categories-grid">
+				</h2>
+
+				<p>
+
+					Explore fresh dairy products
+					from trusted farms.
+
+				</p>
+
+			</div>
+
+			<div
+				className="categories-grid">
 
 				{
 					categories.map(
 						category => (
 
 							<div
-								key={
-									category
-								}
-								className="category-box">
 
-								{
-									category
+								key={
+									category.name
 								}
+
+								className="category-card">
+
+								<div
+									className="category-icon">
+
+									{
+										category.icon
+									}
+
+								</div>
+
+								<h3>
+
+									{
+										category.name
+									}
+
+								</h3>
 
 							</div>
 						))

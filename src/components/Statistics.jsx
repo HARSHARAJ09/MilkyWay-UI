@@ -6,37 +6,98 @@ const Statistics = () => {
 
 	return (
 
-		<section className="stats">
+		<section
+			className="stats-section">
 
-			<div>
+			<div
+				className="stats-header">
 
-				<h2>5000+</h2>
+				<h2>
 
-				<p>Happy Customers</p>
+					Trusted By Thousands Of Families
 
-			</div>
+				</h2>
 
-			<div>
+				<p>
 
-				<h2>100+</h2>
+					Delivering fresh dairy products
+					every day with quality,
+					reliability and care.
 
-				<p>Products</p>
-
-			</div>
-
-			<div>
-
-				<h2>50+</h2>
-
-				<p>Farm Partners</p>
+				</p>
 
 			</div>
 
-			<div>
+			<div
+				className="stats-grid">
 
-				<h2>24/7</h2>
+				<div
+					className="stat-card">
 
-				<p>Support</p>
+					<h3>
+
+						5000+
+
+					</h3>
+
+					<p>
+
+						Happy Customers
+
+					</p>
+
+				</div>
+
+				<div
+					className="stat-card">
+
+					<h3>
+
+						100+
+
+					</h3>
+
+					<p>
+
+						Dairy Products
+
+					</p>
+
+				</div>
+
+				<div
+					className="stat-card">
+
+					<h3>
+
+						50+
+
+					</h3>
+
+					<p>
+
+						Farm Partners
+
+					</p>
+
+				</div>
+
+				<div
+					className="stat-card">
+
+					<h3>
+
+						24/7
+
+					</h3>
+
+					<p>
+
+						Customer Support
+
+					</p>
+
+				</div>
 
 			</div>
 

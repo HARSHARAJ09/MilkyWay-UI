@@ -1,49 +1,259 @@
+/* =========================
+   OFFER SECTION
+========================= */
+
 .offer-banner {
 
-	margin: 60px 8%;
+	margin: 70px auto;
 
-	padding: 50px;
+	max-width: 1400px;
 
-	border-radius: 20px;
+	padding: 70px 30px;
+
+	border-radius: 24px;
 
 	background:
 		linear-gradient(
 			135deg,
-			#4CAF50,
-			#81C784);
+			var(--primary-green),
+			var(--dark-green)
+		);
 
 	color: white;
 
 	text-align: center;
+
+	position: relative;
+
+	overflow: hidden;
 }
 
-.offer-banner h2 {
+/* Decorative Circles */
 
-	font-size: 2.5rem;
+.offer-banner::before {
 
-	margin-bottom: 15px;
+	content: "";
+
+	position: absolute;
+
+	top: -80px;
+
+	right: -80px;
+
+	width: 220px;
+
+	height: 220px;
+
+	border-radius: 50%;
+
+	background:
+		rgba(
+			255,
+			255,
+			255,
+			0.08
+		);
 }
 
-.offer-banner p {
+.offer-banner::after {
 
-	font-size: 1.2rem;
+	content: "";
+
+	position: absolute;
+
+	bottom: -70px;
+
+	left: -70px;
+
+	width: 180px;
+
+	height: 180px;
+
+	border-radius: 50%;
+
+	background:
+		rgba(
+			255,
+			255,
+			255,
+			0.05
+		);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.offer-content {
+
+	max-width: 800px;
+
+	margin: auto;
+
+	position: relative;
+
+	z-index: 2;
+}
+
+/* =========================
+   OFFER TAG
+========================= */
+
+.offer-tag {
+
+	display: inline-block;
+
+	padding: 8px 16px;
+
+	border-radius: 25px;
+
+	background:
+		rgba(
+			255,
+			255,
+			255,
+			0.15
+		);
+
+	font-size: 12px;
+
+	font-weight: 700;
+
+	letter-spacing: 1px;
 
 	margin-bottom: 20px;
 }
 
+/* =========================
+   TITLE
+========================= */
+
+.offer-banner h2 {
+
+	font-size: 2.8rem;
+
+	margin-bottom: 15px;
+
+	color: white;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.offer-banner p {
+
+	font-size: 1.1rem;
+
+	line-height: 1.8;
+
+	margin-bottom: 30px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.offer-features {
+
+	display: flex;
+
+	justify-content: center;
+
+	flex-wrap: wrap;
+
+	gap: 15px;
+
+	margin-bottom: 35px;
+}
+
+.offer-features span {
+
+	background:
+		rgba(
+			255,
+			255,
+			255,
+			0.12
+		);
+
+	padding: 10px 18px;
+
+	border-radius: 25px;
+
+	font-size: 14px;
+
+	font-weight: 600;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
 .offer-banner button {
 
-	padding: 12px 25px;
+	background: white;
+
+	color:
+		var(--primary-green);
+
+	padding: 14px 30px;
 
 	border: none;
 
-	border-radius: 8px;
+	border-radius: 12px;
+
+	font-size: 15px;
+
+	font-weight: 700;
 
 	cursor: pointer;
 
-	font-weight: bold;
+	transition: 0.3s ease;
+}
 
-	background-color: white;
+.offer-banner button:hover {
 
-	color: #4CAF50;
+	transform:
+		translateY(-3px);
+
+	box-shadow:
+		0 10px 20px
+		rgba(
+			0,
+			0,
+			0,
+			0.15
+		);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.offer-banner {
+
+		margin: 50px 15px;
+
+		padding: 50px 20px;
+	}
+
+	.offer-banner h2 {
+
+		font-size: 2rem;
+	}
+
+	.offer-banner p {
+
+		font-size: 1rem;
+	}
+
+	.offer-features {
+
+		flex-direction: column;
+
+		align-items: center;
+	}
 }

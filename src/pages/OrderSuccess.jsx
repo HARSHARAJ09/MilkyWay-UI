@@ -1,77 +1,192 @@
 import React from "react";
 
 import {
-	useLocation
+	useLocation,
+	useNavigate
 }
 from "react-router-dom";
+
 import "../assets/css/OrderSuccess.css";
 
 const OrderSuccess = () => {
 
-	const location = useLocation();
-const order =
+	const location =
+		useLocation();
+
+	const navigate =
+		useNavigate();
+
+	const order =
 		location.state;
-		if (!order) {
+
+	if (!order) {
+
+		return (
+
+			<div
+				className="order-success-page">
+
+				<div
+					className="success-card">
+
+					<h1>
+
+						Order Created
+
+					</h1>
+
+					<p>
+
+						Your order has been processed successfully.
+
+					</p>
+
+					<button
+
+						onClick={() =>
+							navigate("/orders")
+						}>
+
+						View Orders
+
+					</button>
+
+				</div>
+
+			</div>
+		);
+	}
 
 	return (
 
 		<div
-			className="order-success">
+			className="order-success-page">
 
-			<h1>
+			<div
+				className="success-card">
 
-				Order Created
+				<div
+					className="success-icon">
 
-			</h1>
+					✓
 
-		</div>
-	);
-}
-	return (
+				</div>
 
-		<div
-			className="order-success">
+				<h1>
 
-			<h1>
+					Order Placed Successfully
 
-				Order Placed Successfully
+				</h1>
 
-			</h1>
-				<h3>
+				<p>
 
-				Order ID :
-				{
-					order?.orderId
-				}
+					Thank you for choosing Milky-Way.
 
-			</h3>
-			<p>
+				</p>
 
-				Status :
-				{
-					order?.orderStatus
-				}
+				<div
+					className="order-summary">
 
-			</p>
+					<div
+						className="summary-row">
 
-			<p>
+						<span>
 
-				Payment :
-				{
-					order?.paymentStatus
-				}
+							Order ID
 
-			</p>
+						</span>
 
-			<p>
+						<strong>
 
-				Total :
-				₹
-				{
-					order?.totalAmount
-				}
+							#{order.orderId}
 
-			</p>
+						</strong>
+
+					</div>
+
+					<div
+						className="summary-row">
+
+						<span>
+
+							Order Status
+
+						</span>
+
+						<strong>
+
+							{order.orderStatus}
+
+						</strong>
+
+					</div>
+
+					<div
+						className="summary-row">
+
+						<span>
+
+							Payment Status
+
+						</span>
+
+						<strong>
+
+							{order.paymentStatus}
+
+						</strong>
+
+					</div>
+
+					<div
+						className="summary-row">
+
+						<span>
+
+							Total Amount
+
+						</span>
+
+						<strong>
+
+							₹{order.totalAmount}
+
+						</strong>
+
+					</div>
+
+				</div>
+
+				<div
+					className="success-actions">
+
+					<button
+
+						className="orders-btn"
+
+						onClick={() =>
+							navigate("/orders")
+						}>
+
+						My Orders
+
+					</button>
+
+					<button
+
+						className="shop-btn"
+
+						onClick={() =>
+							navigate("/products")
+						}>
+
+						Continue Shopping
+
+					</button>
+
+				</div>
+
+			</div>
 
 		</div>
 	);

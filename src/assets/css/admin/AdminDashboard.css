@@ -1,0 +1,38 @@
+.admin-dashboard {
+
+	padding: 30px;
+}
+
+.admin-cards {
+
+	display: grid;
+
+	grid-template-columns:
+		repeat(
+			auto-fit,
+			minmax(
+				220px,
+				1fr));
+
+	gap: 20px;
+}
+
+.dashboard-card {
+
+	background: white;
+
+	padding: 25px;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+
+	text-align: center;
+}
+
+.dashboard-card h2 {
+
+	color: var(--primary-color);
+
+	font-size: 2rem;
+}

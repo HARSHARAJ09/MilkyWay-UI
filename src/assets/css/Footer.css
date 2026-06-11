@@ -1,10 +1,129 @@
+/* =========================
+   FOOTER
+========================= */
+
 .footer {
 
-	background-color: #2E7D32;
+	background: var(--dark-green);
 
 	color: white;
 
+	margin-top: 50px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.footer-container {
+
+	width: 90%;
+
+	max-width: 1400px;
+
+	margin: auto;
+
+	padding: 40px 0;
+
+	display: grid;
+
+	grid-template-columns:
+		repeat(
+			auto-fit,
+			minmax(
+				250px,
+				1fr));
+
+	gap: 30px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.footer-section {
+
+	display: flex;
+
+	flex-direction: column;
+
+	gap: 10px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+
+	color: white;
+
+	margin-bottom: 10px;
+}
+
+.footer-section p {
+
+	color: rgba(
+		255,
+		255,
+		255,
+		0.85);
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.footer-section a {
+
+	color: rgba(
+		255,
+		255,
+		255,
+		0.85);
+
+	text-decoration: none;
+
+	transition: 0.3s ease;
+}
+
+.footer-section a:hover {
+
+	color: white;
+
+	padding-left: 5px;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.footer-bottom {
+
 	text-align: center;
 
-	padding: 30px;
+	padding: 20px;
+
+	border-top:
+		1px solid rgba(
+			255,
+			255,
+			255,
+			0.15);
+
+	font-size: 0.9rem;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.footer-container {
+
+		text-align: center;
+	}
+
+	.footer-section {
+
+		align-items: center;
+	}
 }

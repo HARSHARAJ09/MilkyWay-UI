@@ -16,6 +16,9 @@ import OrderSuccess from "./pages/OrderSuccess";
 import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
+import Subscriptions from "./pages/Subscriptions";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
 
 const App = () => {
 
@@ -104,17 +107,7 @@ const App = () => {
 	}
 />
 
-<Route
-  path="subscriptions"
-  element={
-    <ProtectedRoute>
-      <div style={{ padding: '20px' }}>
-        <h1>Subscriptions</h1>
-        <p>This is the subscriptions page. Here you can manage your subscriptions and view subscription details.</p>
-      </div>
-    </ProtectedRoute>
-  }
-/>
+
 
 <Route
 	path="/dashboard"
@@ -122,6 +115,39 @@ const App = () => {
 		<ProtectedRoute>
 
 			<Dashboard />
+
+		</ProtectedRoute>
+	}
+/>
+
+<Route
+	path="/subscriptions"
+	element={
+		<ProtectedRoute>
+
+			<Subscriptions />
+
+		</ProtectedRoute>
+	}
+/>
+
+<Route
+	path="/admin"
+	element={
+		<ProtectedRoute>
+
+			<AdminDashboard />
+
+		</ProtectedRoute>
+	}
+/>
+
+<Route
+	path="/admin/products"
+	element={
+		<ProtectedRoute>
+
+			<AdminProducts />
 
 		</ProtectedRoute>
 	}

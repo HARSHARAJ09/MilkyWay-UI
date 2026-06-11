@@ -4,69 +4,113 @@ import "../assets/css/Testimonials.css";
 
 const Testimonials = () => {
 
+	const testimonials = [
+
+		{
+			name: "Sara",
+			rating: "★★★★★",
+			message:
+				"Fresh milk delivered every morning without fail. The quality is excellent and my family loves it."
+		},
+
+		{
+			name: "Maya",
+			rating: "★★★★★",
+			message:
+				"The paneer and curd are always fresh. Milky-Way has become our trusted dairy partner."
+		},
+
+		{
+			name: "Oasis",
+			rating: "★★★★★",
+			message:
+				"The subscription service is fantastic. Easy to manage and deliveries are always on time."
+		}
+	];
+
 	return (
 
-		<section className="testimonial-section">
+		<section
+			className="testimonial-section">
 
-			<h2>
+			<div
+				className="testimonial-header">
 
-				What Our Customers Say
+				<h2>
 
-			</h2>
+					What Our Customers Say
 
-			<div className="testimonial-grid">
+				</h2>
 
-				<div className="testimonial-card">
+				<p>
 
-					<p>
+					Trusted by families who value
+					freshness, quality, and reliable
+					daily delivery.
 
-						Fresh milk every
-						morning.
-						Excellent service.
+				</p>
 
-					</p>
+			</div>
 
-					<h4>
+			<div
+				className="testimonial-grid">
 
-						Sara
+				{
+					testimonials.map(
+						(testimonial, index) => (
 
-					</h4>
+							<div
 
-				</div>
+								key={index}
 
-				<div className="testimonial-card">
+								className="testimonial-card">
 
-					<p>
+								<div
+									className="testimonial-rating">
 
-						Paneer quality is
-						outstanding.
+									{
+										testimonial.rating
+									}
 
-					</p>
+								</div>
 
-					<h4>
+								<p
+									className="testimonial-message">
 
-						Maya
+									"
+									{
+										testimonial.message
+									}
+									"
 
-					</h4>
+								</p>
 
-				</div>
+								<div
+									className="testimonial-user">
 
-				<div className="testimonial-card">
+									<div
+										className="testimonial-avatar">
 
-					<p>
+										{
+											testimonial.name
+												.charAt(0)
+										}
 
-						The best dairy
-						store I have used.
+									</div>
 
-					</p>
+									<h4>
 
-					<h4>
+										{
+											testimonial.name
+										}
 
-						Oasis
+									</h4>
 
-					</h4>
+								</div>
 
-				</div>
+							</div>
+						))
+				}
 
 			</div>
 

@@ -8,29 +8,50 @@ from "react";
 import orderService
 	from "../services/orderService";
 
-import "../assets/css/Orders.css";	
+import "../assets/css/Orders.css";
+
 const Orders = () => {
 
 	const [orders,
 		setOrders] =
 		useState([]);
 
+	const [loading,
+		setLoading] =
+		useState(true);
+
+	const [error,
+		setError] =
+		useState("");
+
 	const loadOrders =
 		async () => {
 
 			try {
+
+				setLoading(true);
 
 				const response =
 					await orderService
 						.getMyOrders();
 
 				setOrders(
-					response.data);
+					response.data || []
+				);
 
 			} catch (error) {
 
-				console.log(
-					error);
+				console.error(
+					error
+				);
+
+				setError(
+					"Unable To Load Orders"
+				);
+
+			} finally {
+
+				setLoading(false);
 			}
 		};
 
@@ -39,6 +60,32 @@ const Orders = () => {
 		loadOrders();
 
 	}, []);
+
+	if (loading) {
+
+		return (
+
+			<div
+				className="orders-message">
+
+				Loading Orders...
+
+			</div>
+		);
+	}
+
+	if (error) {
+
+		return (
+
+			<div
+				className="orders-error">
+
+				{error}
+
+			</div>
+		);
+	}
 
 	if (
 		orders.length === 0
@@ -55,6 +102,12 @@ const Orders = () => {
 
 				</h2>
 
+				<p>
+
+					Start shopping and place your first order.
+
+				</p>
+
 			</div>
 		);
 	}
@@ -64,64 +117,122 @@ const Orders = () => {
 		<div
 			className="orders-page">
 
-			<h1>
+			<div
+				className="orders-header">
 
-				My Orders
+				<h1>
 
-			</h1>
+					My Orders
 
-			{
-				orders.map(
-					order => (
+				</h1>
 
-						<div
+				<p>
 
-							key={
-								order.orderId
-							}
+					Total Orders :
 
-							className="order-card">
+					{" "}
 
-							<h3>
+					{
+						orders.length
+					}
 
-								Order #
-								{
+				</p>
+
+			</div>
+
+			<div
+				className="orders-grid">
+
+				{
+					orders.map(
+						order => (
+
+							<div
+
+								key={
 									order.orderId
 								}
 
-							</h3>
+								className="order-card">
 
-							<p>
+								<div
+									className="order-top">
 
-								Amount :
-								₹
+									<h3>
+
+										Order #
+
+										{
+											order.orderId
+										}
+
+									</h3>
+
+									<span
+										className="order-status">
+
+										{
+											order.orderStatus
+										}
+
+									</span>
+
+								</div>
+
+								<p>
+
+									<strong>
+
+										Amount :
+
+									</strong>
+
+									₹
+									{
+										order.totalAmount
+									}
+
+								</p>
+
+								<p>
+
+									<strong>
+
+										Payment :
+
+									</strong>
+
+									{
+										order.paymentStatus
+									}
+
+								</p>
+
 								{
-									order.totalAmount
+									order.createdAt &&
+
+									<p>
+
+										<strong>
+
+											Date :
+
+										</strong>
+
+										{
+											new Date(
+												order.createdAt
+											).toLocaleDateString()
+										}
+
+									</p>
 								}
 
-							</p>
+							</div>
+						))
+				}
 
-							<p>
-
-								Order Status :
-								{
-									order.orderStatus
-								}
-
-							</p>
-
-							<p>
-
-								Payment :
-								{
-									order.paymentStatus
-								}
-
-							</p>
-
-						</div>
-					))
-			}
+			</div>
 
 		</div>
 	);

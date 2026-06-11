@@ -1,31 +1,77 @@
 import React from "react";
 
+import {
+	useNavigate
+}
+from "react-router-dom";
+
 import "../assets/css/OfferBanner.css";
 
 const OfferBanner = () => {
+
+	const navigate =
+		useNavigate();
 
 	return (
 
 		<section
 			className="offer-banner">
 
-			<h2>
+			<div
+				className="offer-content">
 
-				Get 15% Off
+				<span
+					className="offer-tag">
 
-			</h2>
+					LIMITED TIME OFFER
 
-			<p>
+				</span>
 
-				On Your First Dairy Order
+				<h2>
 
-			</p>
+					Get 15% Off On Your First Order
 
-			<button>
+				</h2>
 
-				Shop Now
+				<p>
 
-			</button>
+					Enjoy farm-fresh milk, paneer,
+					curd, ghee, and dairy products
+					delivered directly to your
+					doorstep.
+
+				</p>
+
+				<div
+					className="offer-features">
+
+					<span>
+						Fresh Daily
+					</span>
+
+					<span>
+						Fast Delivery
+					</span>
+
+					<span>
+						Quality Assured
+					</span>
+
+				</div>
+
+				<button
+
+					onClick={() =>
+						navigate(
+							"/products"
+						)
+					}>
+
+					Shop Now
+
+				</button>
+
+			</div>
 
 		</section>
 	);

@@ -1,0 +1,78 @@
+.admin-products {
+
+	padding: 30px;
+}
+
+.admin-search {
+
+	display: flex;
+
+	gap: 10px;
+
+	margin-bottom: 20px;
+}
+
+.admin-search input {
+
+	padding: 10px;
+
+	width: 300px;
+
+	border: 1px solid #ddd;
+
+	border-radius: 6px;
+}
+
+.admin-search button {
+
+	padding: 10px 15px;
+
+	border: none;
+
+	border-radius: 6px;
+
+	background-color:
+		var(--primary-color);
+
+	color: white;
+
+	cursor: pointer;
+}
+
+.admin-products table {
+
+	width: 100%;
+
+	border-collapse: collapse;
+
+	background: white;
+}
+
+.admin-products th,
+.admin-products td {
+
+	padding: 12px;
+
+	border: 1px solid #ddd;
+
+	text-align: left;
+}
+
+.admin-products th {
+
+	background-color:
+		#f5f5f5;
+}
+
+.admin-products td button {
+
+	margin-right: 10px;
+
+	padding: 6px 10px;
+
+	border: none;
+
+	border-radius: 5px;
+
+	cursor: pointer;
+}

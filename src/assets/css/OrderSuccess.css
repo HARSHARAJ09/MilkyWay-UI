@@ -1,18 +1,192 @@
-.order-success {
+.order-success-page {
+
+	min-height: 100vh;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-items: center;
+
+	padding: 30px;
+
+	background:
+		var(--background-color);
+}
+
+/* =========================
+   CARD
+========================= */
+
+.success-card {
+
+	width: 100%;
+
+	max-width: 600px;
+
+	background:
+		var(--white);
+
+	padding: 40px;
+
+	border-radius:
+		var(--border-radius);
+
+	box-shadow:
+		var(--card-shadow);
 
 	text-align: center;
-
-	padding: 100px 20px;
 }
 
-.order-success h1 {
+/* =========================
+   SUCCESS ICON
+========================= */
 
-	color: var(--primary-color);
+.success-icon {
 
-	margin-bottom: 20px;
+	width: 80px;
+
+	height: 80px;
+
+	margin: 0 auto 20px;
+
+	border-radius: 50%;
+
+	background:
+		var(--light-green);
+
+	color:
+		var(--dark-green);
+
+	font-size: 40px;
+
+	font-weight: bold;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
 }
 
-.order-success p {
+.success-card h1 {
 
-	font-size: 18px;
+	color:
+		var(--dark-green);
+
+	margin-bottom: 10px;
+}
+
+.success-card p {
+
+	color:
+		var(--text-dark);
+
+	margin-bottom: 25px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.order-summary {
+
+	background:
+		#f9f9f9;
+
+	padding: 20px;
+
+	border-radius: 10px;
+
+	margin-bottom: 25px;
+}
+
+.summary-row {
+
+	display: flex;
+
+	justify-content: space-between;
+
+	padding: 10px 0;
+
+	border-bottom:
+		1px solid
+		var(--border-color);
+}
+
+.summary-row:last-child {
+
+	border-bottom: none;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.success-actions {
+
+	display: flex;
+
+	gap: 15px;
+
+	justify-content: center;
+}
+
+.orders-btn {
+
+	background:
+		var(--dark-green);
+
+	color: white;
+
+	border: none;
+
+	padding: 12px 20px;
+
+	border-radius: 8px;
+
+	cursor: pointer;
+
+	font-weight: 600;
+}
+
+.shop-btn {
+
+	background:
+		var(--primary-green);
+
+	color: white;
+
+	border: none;
+
+	padding: 12px 20px;
+
+	border-radius: 8px;
+
+	cursor: pointer;
+
+	font-weight: 600;
+}
+
+.orders-btn:hover,
+.shop-btn:hover {
+
+	opacity: 0.9;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+	.success-card {
+
+		padding: 25px;
+	}
+
+	.success-actions {
+
+		flex-direction: column;
+	}
 }

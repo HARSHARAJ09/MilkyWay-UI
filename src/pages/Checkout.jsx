@@ -209,19 +209,48 @@ const Checkout = () => {
 
 								</p>
 
-								<p>
+								<p>{address.pincode}</p>
+								{
+								address.defaultAddress &&
 
-									{
-										address.pincode
-									}
+						<span className="default-badge">
 
-								</p>
+									Default Address
+
+								</span>
+							}
 
 							</div>
 						))
 				}
 
 			</div>
+
+<div
+	className="order-summary">
+
+	<h3>
+
+		Order Summary
+
+	</h3>
+
+	<p>
+
+		Selected Address :
+		{
+			selectedAddress
+		}
+
+	</p>
+
+	<p>
+
+		Ready To Place Order
+
+	</p>
+
+</div>
 
 			<textarea
 
@@ -239,24 +268,16 @@ const Checkout = () => {
 			/>
 
 			<button
+	className="checkout-btn"
+	onClick={handlePlaceOrder}
+	disabled={loading}
+>
 
-				onClick={
-					handlePlaceOrder
-				}>
+	{loading
+		? "Placing Order..."
+		: "Place Order"}
 
-				{
-					loading
-
-					?
-
-					"Placing Order..."
-
-					:
-
-					"Place Order"
-				}
-
-			</button>
+</button>
 
 		</div>
 	);

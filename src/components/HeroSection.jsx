@@ -14,34 +14,93 @@ const HeroSection = () => {
 
 	return (
 
-<section className="hero">
+		<section
+			className="hero">
 
-	<div className="hero-content">
+			<div
+				className="hero-overlay">
 
-		<h1>
+				<div
+					className="hero-content">
 
-			Fresh Dairy
-			At Your Doorstep
+					<span
+						className="hero-badge">
 
-		</h1>
+						Fresh Dairy Delivered Daily
 
-		<p>
+					</span>
 
-			Pure Milk, Paneer,
-			Curd, Butter,
-			Cheese & Ghee
+					<h1>
 
-		</p>
+						Fresh Dairy
+						At Your Doorstep
 
-		<button>
+					</h1>
 
-			Shop Fresh Now
+					<p>
 
-		</button>
+						Pure Milk, Paneer,
+						Curd, Butter, Cheese
+						and Ghee delivered
+						fresh from trusted farms.
 
-	</div>
+					</p>
 
-</section>
+					<div
+						className="hero-features">
+
+						<span>
+							100% Fresh
+						</span>
+
+						<span>
+							Daily Delivery
+						</span>
+
+						<span>
+							Quality Checked
+						</span>
+
+					</div>
+
+					<div
+						className="hero-actions">
+
+						<button
+
+							className="shop-btn"
+
+							onClick={() =>
+								navigate(
+									"/products"
+								)
+							}>
+
+							Shop Fresh Now
+
+						</button>
+
+						<button
+
+							className="subscribe-btn"
+
+							onClick={() =>
+								navigate(
+									"/subscriptions"
+								)
+							}>
+
+							Start Subscription
+
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
 	);
 };
 

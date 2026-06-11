@@ -7,146 +7,214 @@ from "react";
 import {
 	Link,
 	useNavigate
-} from "react-router-dom";
+}
+from "react-router-dom";
 
-import { useAuth }
-	from "../context/AuthContext";
-
-import "../assets/css/Navbar.css";
 import {
 	FaBars
 }
 from "react-icons/fa";
-import MobileMenu
-	from "./MobileMenu";
-import ProfileDropdown from "./ProfileDropdown";
+
+import {
+	useAuth
+}
+from "../context/AuthContext";
 
 import {
 	useCart
 }
 from "../context/CartContext";
 
+import MobileMenu
+	from "./MobileMenu";
 
+import ProfileDropdown
+	from "./ProfileDropdown";
+
+import "../assets/css/Navbar.css";
 
 const Navbar = () => {
 
 	const navigate =
 		useNavigate();
 
-		const {
-	cartCount
-} = useCart(); 
-	// const cartCount = 0; 
+	const [isMenuOpen,
+		setIsMenuOpen] =
+		useState(false);
+
+	const {
+		cartCount
+	} = useCart();
+
 	const {
 		logout
 	} = useAuth();
 
-	const handleLogout = () => {
+	const role =
+		localStorage.getItem(
+			"role");
 
-		logout();
+	const handleLogout =
+		() => {
 
-		navigate("/");
-	};
+			logout();
 
-	const [isMenuOpen,
-	setIsMenuOpen] =
-	useState(false);
-
-	// const toggleMenu = () => {
-	// 	setIsMenuOpen(!isMenuOpen);
-	// };
-
-// 	useEffect(() => {// Load cart count from when local storage or API is to used
-
-// 	loadCartCount();
-
-// }, []);
+			navigate("/");
+		};
 
 	return (
 
-		<nav className="navbar">
+		<nav
+			className="navbar">
 
-			<div
+			<Link
+				to="/home"
 				className="logo">
 
 				Milky-Way
 
-			</div>
+			</Link>
+
 			<button
-	className="menu-btn"
-	onClick={() =>
-		setIsMenuOpen(true)
-	}>
+				className="menu-btn"
+				onClick={() =>
+					setIsMenuOpen(
+						true)
+				}>
 
-	<FaBars />
+				<FaBars />
 
-</button>
+			</button>
 
 			<ul
 				className="nav-links">
 
 				<li>
-					<Link to="/home">
+					<Link
+						to="/home">
+
 						Home
+
 					</Link>
 				</li>
 
 				<li>
-					<Link to="/products">
+					<Link
+						to="/products">
+
 						Products
+
 					</Link>
 				</li>
 
-				<Link
-	to="/cart">
+				{
+					role ===
+					"ROLE_CUSTOMER" &&
 
-	Cart
+					<>
 
-	<span
-		className="cart-badge">
+						<li>
 
-		{
-			cartCount
-		}
+							<Link
+								to="/cart">
 
-	</span>
+								Cart
 
-</Link>
+								<span
+									className="cart-badge">
 
-				<li>
-					<Link to="/orders">
-						Orders
-					</Link>
-				</li>
+									{
+										cartCount
+									}
 
-				<Link
-	to="/dashboard">
+								</span>
 
-	Dashboard
+							</Link>
 
-</Link>
+						</li>
+
+						<li>
+
+							<Link
+								to="/orders">
+
+								Orders
+
+							</Link>
+
+						</li>
+
+						<li>
+
+							<Link
+								to="/dashboard">
+
+								Dashboard
+
+							</Link>
+
+						</li>
+
+						<li>
+
+							<Link
+								to="/subscriptions">
+
+								Subscriptions
+
+							</Link>
+
+						</li>
+
+					</>
+				}
+
+				{
+					role ===
+					"ROLE_ADMIN" &&
+
+					<li>
+
+						<Link
+							to="/admin">
+
+							Admin Dashboard
+
+						</Link>
+
+					</li>
+				}
 
 			</ul>
 
-			<ProfileDropdown />
+			<div
+				className="navbar-right">
 
-			<button 
-				onClick={handleLogout}>
-					
-				Logout
-			
-			</button>
+				<ProfileDropdown />
+
+				<button
+					className="logout-btn"
+					onClick={
+						handleLogout
+					}>
+
+					Logout
+
+				</button>
+
+			</div>
 
 			<MobileMenu
 
-	isOpen={
-		isMenuOpen
-	}
+				isOpen={
+					isMenuOpen
+				}
 
-	closeMenu={() =>
-		setIsMenuOpen(false)
-	}
-/>
+				closeMenu={() =>
+					setIsMenuOpen(
+						false)
+				}
+			/>
 
 		</nav>
 	);

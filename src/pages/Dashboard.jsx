@@ -5,12 +5,30 @@ import React,
 }
 from "react";
 
+import {
+	useNavigate
+}
+from "react-router-dom";
+
 import dashboardService
 	from "../services/dashboardService";
+
+import subscriptionService
+	from "../services/subscriptionService";
+
+import userService
+	from "../services/userService";
 
 import "../assets/css/Dashboard.css";
 
 const Dashboard = () => {
+
+	const navigate =
+		useNavigate();
+
+	const [user,
+		setUser] =
+		useState(null);
 
 	const [orders,
 		setOrders] =
@@ -20,25 +38,47 @@ const Dashboard = () => {
 		setAddresses] =
 		useState([]);
 
+	const [subscriptions,
+		setSubscriptions] =
+		useState([]);
+
 	const loadDashboard =
 		async () => {
 
 			try {
 
-				const response =
+				const profileResponse =
+					await userService
+						.getProfile();
+
+				setUser(
+					profileResponse.data
+				);
+
+				const dashboardResponse =
 					await dashboardService
 						.getDashboardData();
 
 				setOrders(
-					response.orders);
+					dashboardResponse.orders || []
+				);
 
 				setAddresses(
-					response.addresses);
+					dashboardResponse.addresses || []
+				);
 
-			} catch (error) {
+				const subscriptionResponse =
+					await subscriptionService
+						.getMySubscriptions();
 
-				console.log(
-					error);
+				setSubscriptions(
+					subscriptionResponse.data || []
+				);
+
+			}
+			catch (error) {
+
+				console.log(error);
 			}
 		};
 
@@ -48,22 +88,99 @@ const Dashboard = () => {
 
 	}, []);
 
+	const activeSubscriptions =
+		subscriptions.filter(
+			sub =>
+				sub.subscriptionStatus ===
+				"ACTIVE"
+		).length;
+
+	const totalSpent =
+		orders.reduce(
+			(total, order) =>
+				total +
+				(order.totalAmount || 0),
+			0
+		);
+
+	const firstLetter =
+
+		user?.firstName
+
+			?.charAt(0)
+
+			.toUpperCase()
+
+		||
+
+		"U";
+
 	return (
 
-		<div
-			className="dashboard-page">
+		<div className="dashboard-page">
 
-			<h1>
+			<div className="dashboard-welcome">
 
-				My Dashboard
+				<div className="dashboard-avatar">
 
-			</h1>
+					{firstLetter}
 
-			<div
-				className="stats-grid">
+				</div>
 
-				<div
-					className="stat-card">
+				<div>
+
+					<h1>
+
+						Welcome,
+
+						{" "}
+
+						{
+							user?.firstName
+						}
+
+					</h1>
+
+					<p>
+
+						Manage your dairy
+						deliveries and orders
+
+					</p>
+
+				</div>
+
+			</div>
+
+			<div className="subscription-banner">
+
+				<h3>
+
+					Active Subscription
+
+				</h3>
+
+				<p>
+
+					{
+						activeSubscriptions > 0
+
+						?
+
+						`${activeSubscriptions} Active Plan(s)`
+
+						:
+
+						"No Active Subscription"
+					}
+
+				</p>
+
+			</div>
+
+			<div className="stats-grid">
+
+				<div className="stat-card">
 
 					<h2>
 
@@ -75,14 +192,13 @@ const Dashboard = () => {
 
 					<p>
 
-						Total Orders
+						Orders
 
 					</p>
 
 				</div>
 
-				<div
-					className="stat-card">
+				<div className="stat-card">
 
 					<h2>
 
@@ -100,82 +216,194 @@ const Dashboard = () => {
 
 				</div>
 
+				<div className="stat-card">
+
+					<h2>
+
+						{
+							activeSubscriptions
+						}
+
+					</h2>
+
+					<p>
+
+						Subscriptions
+
+					</p>
+
+				</div>
+
+				<div className="stat-card">
+
+					<h2>
+
+						₹
+						{
+							totalSpent
+						}
+
+					</h2>
+
+					<p>
+
+						Total Spent
+
+					</p>
+
+				</div>
+
 			</div>
 
-			<div
-				className="dashboard-section">
+			<div className="quick-actions">
 
-				<h2>
+				<button
+					onClick={() =>
+						navigate("/products")
+					}>
 
-					Recent Orders
+					Order Products
 
-				</h2>
+				</button>
 
-				{
-					orders.slice(
-						0,
-						5)
-						.map(
-							order => (
+				<button
+					onClick={() =>
+						navigate("/subscriptions")
+					}>
+
+					Manage Subscription
+
+				</button>
+
+				<button
+					onClick={() =>
+						navigate("/profile")
+					}>
+
+					Add Address
+
+				</button>
+
+			</div>
+
+			<div className="dashboard-grid">
+
+				<div className="dashboard-section">
+
+					<h2>
+
+						Recent Orders
+
+					</h2>
+
+					{
+						orders.length === 0
+
+						?
+
+						<p>
+
+							No Orders Yet
+
+						</p>
+
+						:
+
+						orders
+							.slice(0, 5)
+							.map(order => (
 
 								<div
+									key={order.orderId}
+									className="dashboard-item">
 
+									<span>
+
+										Order #
+										{
+											order.orderId
+										}
+
+									</span>
+
+									<span>
+
+										₹
+										{
+											order.totalAmount
+										}
+
+									</span>
+
+								</div>
+							))
+					}
+
+				</div>
+
+				<div className="dashboard-section">
+
+					<h2>
+
+						Delivery Status
+
+					</h2>
+
+					<div className="delivery-card">
+
+						<h4>
+
+							Next Delivery
+
+						</h4>
+
+						<p>
+
+							Available After
+							Delivery Module
+
+						</p>
+
+					</div>
+
+				</div>
+
+				<div className="dashboard-section">
+
+					<h2>
+
+						My Addresses
+
+					</h2>
+
+					{
+						addresses
+							.slice(0, 5)
+							.map(address => (
+
+								<div
 									key={
-										order.orderId
+										address.addressId
+									}
+									className="dashboard-item">
+
+									{
+										address.addressLine1
 									}
 
-									className="dashboard-order">
+									,
 
-									Order #
-									{
-										order.orderId
-									}
+									{" "}
 
-									-
-									₹
 									{
-										order.totalAmount
+										address.city
 									}
 
 								</div>
 							))
-				}
+					}
 
-			</div>
-
-			<div
-				className="dashboard-section">
-
-				<h2>
-
-					My Addresses
-
-				</h2>
-
-				{
-					addresses.map(
-						address => (
-
-							<div
-
-								key={
-									address.addressId
-								}
-
-								className="dashboard-address">
-
-								{
-									address.addressLine1
-								}
-
-								,
-								{
-									address.city
-								}
-
-							</div>
-						))
-				}
+				</div>
 
 			</div>
 

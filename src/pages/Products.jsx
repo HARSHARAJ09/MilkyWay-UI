@@ -6,6 +6,9 @@ import React, {
 import productService
 	from "../services/productService";
 
+import categoryService
+	from "../services/categoryService";
+
 import ProductCard
 	from "../components/ProductCard";
 
@@ -15,29 +18,37 @@ import SearchBar
 import SidebarFilter
 	from "../components/SidebarFilter";
 
-import categoryService
-	from "../services/categoryService";
-
 import "../assets/css/Products.css";
 
 const Products = () => {
 
-const [products,
-	setProducts] =
-	useState([]);
+	const [products,
+		setProducts] =
+		useState([]);
+	
+	// const [loading,
+	// setLoading] =
+	// useState(true);
 
-const [categories,
-	setCategories] =
-	useState([]);
+	const [categories,
+		setCategories] =
+		useState([]);
 
-const [search,
-	setSearch] =
-	useState("");
+	const [search,
+		setSearch] =
+		useState("");
 
-const [selectedCategory,
-	setSelectedCategory] =
-	useState("");
+	const [selectedCategory,
+		setSelectedCategory] =
+		useState("");
 
+	const [loading,
+		setLoading] =
+		useState(true);
+
+	const [error,
+		setError] =
+		useState("");
 
 	useEffect(() => {
 
@@ -45,110 +56,213 @@ const [selectedCategory,
 
 	}, []);
 
-	const filteredProducts =
-	products.filter(product => {
-
-		const matchSearch =
-
-			product.productName
-				.toLowerCase()
-				.includes(
-					search.toLowerCase());
-
-		const matchCategory =
-
-			selectedCategory === ""
-
-			||
-
-			product.categoryName ===
-				selectedCategory;
-
-		return matchSearch &&
-				matchCategory;
-	});
-
 	const loadProducts =
 		async () => {
 
-		try {
+			try {
 
-		const productResponse =
-			await productService
-				.getAllProducts();
+				setLoading(true);
 
-		const categoryResponse =
-			await categoryService
-				.getAllCategories();
+				const productResponse =
+					await productService
+						.getAllProducts();
 
-		setProducts(
-			productResponse.data);
+				const categoryResponse =
+					await categoryService
+						.getAllCategories();
 
-		setCategories(
-			categoryResponse.data);
+				setProducts(
+					productResponse.data || []
+				);
 
-	} catch (error) {
+				setCategories(
+					categoryResponse.data || []
+				);
 
-		console.log(error);
-	}
-	};
+			} catch (error) {
+
+				console.error(error);
+
+				setError(
+					"Unable to load products."
+				);
+
+			} finally {
+
+				setLoading(false);
+			}
+		};
+
+	const filteredProducts =
+		products.filter(product => {
+
+			const matchSearch =
+
+				product.productName
+					?.toLowerCase()
+					.includes(
+						search.toLowerCase()
+					);
+
+			const matchCategory =
+
+				selectedCategory === ""
+
+				||
+
+				product.categoryName ===
+				selectedCategory;
+
+			return (
+				matchSearch &&
+				matchCategory
+			);
+		});
 
 	return (
 
-<div className="products-layout">
+		<div className="products-page">
 
-	<SidebarFilter
+			<div className="products-header">
 
-		categories={
-			categories
-		}
+				<h1>
 
-		selectedCategory={
-			selectedCategory
-		}
+					Our Products
 
-		setSelectedCategory={
-			setSelectedCategory
-		}
-	/>
+				</h1>
 
-	<div className="products-content">
+				<p>
 
-		<SearchBar
+					Fresh dairy products delivered directly from farm to home.
 
-			search={
-				search
-			}
+				</p>
 
-			setSearch={
-				setSearch
-			}
-		/>
+			</div>
 
-		<div className="product-grid">
+			<div className="products-layout">
 
-			{
-				filteredProducts.map(
-					product => (
+				<SidebarFilter
 
-						<ProductCard
+					categories={
+						categories
+					}
 
-							key={
-								product.id
+					selectedCategory={
+						selectedCategory
+					}
+
+					setSelectedCategory={
+						setSelectedCategory
+					}
+				/>
+
+				<div className="products-content">
+
+					<SearchBar
+
+						search={
+							search
+						}
+
+						setSearch={
+							setSearch
+						}
+					/>
+
+					<div className="products-info">
+
+						<span>
+
+							Showing
+
+							{" "}
+
+							{
+								filteredProducts.length
 							}
 
-							product={
-								product
+							{" "}
+
+							Products
+
+						</span>
+
+					</div>
+
+					{
+						loading &&
+
+						<div className="loading-state">
+
+							Loading Products...
+
+						</div>
+					}
+
+					{
+						error &&
+
+						<div className="error-state">
+
+							{error}
+
+						</div>
+					}
+
+					{
+						!loading &&
+						!error &&
+						filteredProducts.length === 0 &&
+
+						<div className="empty-state">
+
+							<h3>
+
+								No Products Found
+
+							</h3>
+
+							<p>
+
+								Try changing your search or category filter.
+
+							</p>
+
+						</div>
+					}
+
+					{
+						!loading &&
+						!error &&
+						filteredProducts.length > 0 &&
+
+						<div className="product-grid">
+
+							{
+								filteredProducts.map(
+									product => (
+
+										<ProductCard
+
+											key={
+												product.id
+											}
+
+											product={
+												product
+											}
+										/>
+									))
 							}
-						/>
-					))
-			}
+
+						</div>
+					}
+
+				</div>
+
+			</div>
 
 		</div>
-
-	</div>
-
-</div>
 	);
 };
 

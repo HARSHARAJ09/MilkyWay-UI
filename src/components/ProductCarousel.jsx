@@ -1,4 +1,8 @@
-import React from "react";
+import React,
+{
+	useRef
+}
+from "react";
 
 import ProductCard
 	from "./ProductCard";
@@ -9,18 +13,78 @@ const ProductCarousel = ({
 	products
 }) => {
 
+	const carouselRef =
+		useRef(null);
+
+	const scrollLeft =
+		() => {
+
+			carouselRef.current
+				.scrollBy({
+
+					left: -350,
+
+					behavior: "smooth"
+				});
+		};
+
+	const scrollRight =
+		() => {
+
+			carouselRef.current
+				.scrollBy({
+
+					left: 350,
+
+					behavior: "smooth"
+				});
+		};
+
 	return (
 
 		<section
 			className="carousel-section">
 
-			<h2>
+			<div
+				className="carousel-header">
 
-				Popular Products
+				<h2>
 
-			</h2>
+					Popular Products
+
+				</h2>
+
+				<div
+					className="carousel-controls">
+
+					<button
+						onClick={
+							scrollLeft
+						}>
+
+						❮
+
+					</button>
+
+					<button
+						onClick={
+							scrollRight
+						}>
+
+						❯
+
+					</button>
+
+				</div>
+
+			</div>
 
 			<div
+
+				ref={
+					carouselRef
+				}
+
 				className="carousel-container">
 
 				{
@@ -28,9 +92,11 @@ const ProductCarousel = ({
 						product => (
 
 							<div
+
 								key={
 									product.id
 								}
+
 								className="carousel-item">
 
 								<ProductCard

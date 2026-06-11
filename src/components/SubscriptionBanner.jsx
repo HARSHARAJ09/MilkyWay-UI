@@ -1,32 +1,77 @@
 import React from "react";
 
+import {
+	useNavigate
+}
+from "react-router-dom";
+
 import "../assets/css/SubscriptionBanner.css";
 
 const SubscriptionBanner = () => {
 
+	const navigate =
+		useNavigate();
+
 	return (
 
-		<section className="subscription-banner">
+		<section
+			className="subscription-banner">
 
-			<h2>
+			<div
+				className="subscription-content">
 
-				Never Run Out Of Milk
+				<span
+					className="subscription-tag">
 
-			</h2>
+					PREMIUM DAIRY SUBSCRIPTION
 
-			<p>
+				</span>
 
-				Subscribe today and
-				get fresh dairy
-				delivered every day.
+				<h2>
 
-			</p>
+					Never Run Out Of Milk Again
 
-			<button>
+				</h2>
 
-				Start Subscription
+				<p>
 
-			</button>
+					Get fresh milk, curd, paneer,
+					and dairy products delivered
+					daily to your doorstep with
+					flexible subscription plans.
+
+				</p>
+
+				<div
+					className="subscription-features">
+
+					<span>
+						Daily Delivery
+					</span>
+
+					<span>
+						Pause Anytime
+					</span>
+
+					<span>
+						Fresh Farm Products
+					</span>
+
+				</div>
+
+				<button
+
+					onClick={() =>
+						navigate(
+							"/subscriptions"
+						)
+					}>
+
+					Start Subscription
+
+				</button>
+
+			</div>
 
 		</section>
 	);

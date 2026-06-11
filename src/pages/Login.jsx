@@ -1,103 +1,307 @@
-import React, { useState } from "react";
+import React,
+{
+	useState
+}
+from "react";
 
-import { useNavigate } from "react-router-dom";
+import {
+	Link,
+	useNavigate
+}
+from "react-router-dom";
 
-import authService from "../services/authService";
+import {
+	FaEye,
+	FaEyeSlash
+}
+from "react-icons/fa";
 
-import "../assets/css/common.css";
+import authService
+	from "../services/authService";
+
 import "../assets/css/Login.css";
 
 const Login = () => {
 
-	const navigate = useNavigate();
+	const navigate =
+		useNavigate();
 
-	const [loginData, setLoginData] = useState({
+	const [showPassword,
+		setShowPassword] =
+		useState(false);
 
-		email: "",
+	const [loading,
+		setLoading] =
+		useState(false);
 
-		password: ""
-	});
+	const [error,
+		setError] =
+		useState("");
 
-	const [error, setError] = useState("");
+	const [success,
+		setSuccess] =
+		useState("");
 
-	const handleChange = (event) => {
+	const [loginData,
+		setLoginData] =
+		useState({
 
-		setLoginData({
+			email: "",
 
-			...loginData,
-
-			[event.target.name]:
-				event.target.value
+			password: ""
 		});
-	};
 
-	const handleSubmit = async (event) => {
+	const handleChange =
+		(event) => {
 
-		event.preventDefault();
+			setLoginData({
 
-		try {
+				...loginData,
 
-			const response =
-				await authService.login(
-					loginData);
+				[event.target.name]:
+					event.target.value
+			});
+		};
 
-			localStorage.setItem(
-				"token",
-				response.data.token);
+	const handleSubmit =
+		async (event) => {
 
-			localStorage.setItem(
-				"role",
-				response.data.role);
+			event.preventDefault();
 
-			navigate("/");
+			setError("");
 
-		} catch (error) {
+			setSuccess("");
 
-			setError(
-				"Invalid Email or Password");
-		}
-	};
+			try {
+
+				setLoading(true);
+
+				const response =
+					await authService
+						.login(
+							loginData
+						);
+
+				localStorage.setItem(
+					"token",
+					response.data.token
+				);
+
+				localStorage.setItem(
+					"role",
+					response.data.role
+				);
+
+				if (
+					response.data.role ===
+					"ROLE_ADMIN"
+				) {
+
+					setSuccess(
+						"Admin Login Successful"
+					);
+
+					setTimeout(() => {
+
+						navigate(
+							"/admin"
+						);
+
+					}, 1500);
+
+				}
+				else {
+
+					setSuccess(
+						"Login Successful"
+					);
+
+					setTimeout(() => {
+
+						navigate(
+							"/home"
+						);
+
+					}, 1500);
+				}
+
+			} catch (error) {
+
+				setError(
+
+					error.response?.data ||
+
+					"Invalid Email Or Password"
+				);
+
+			} finally {
+
+				setLoading(false);
+			}
+		};
 
 	return (
 
 		<div className="login-page">
 
 			<form
-				onSubmit={handleSubmit}
-				className="login-form">
+
+				className="login-form"
+
+				onSubmit={
+					handleSubmit
+				}>
 
 				<h2>
-					Milky-Way Login
+
+					Welcome Back
+
 				</h2>
+
+				<p className="subtitle">
+
+					Login To Milky-Way Dairy
+
+				</p>
 
 				{
 					error &&
-					<p>{error}</p>
+
+					<div
+						className="alert error">
+
+						{error}
+
+					</div>
+				}
+
+				{
+					success &&
+
+					<div
+						className="alert success">
+
+						{success}
+
+					</div>
 				}
 
 				<input
+
 					type="email"
+
 					name="email"
-					placeholder="Enter Email"
-					value={loginData.email}
-					onChange={handleChange}
+
+					placeholder="Email Address"
+
+					value={
+						loginData.email
+					}
+
+					onChange={
+						handleChange
+					}
+
 					required
 				/>
 
-				<input
-					type="password"
-					name="password"
-					placeholder="Enter Password"
-					value={loginData.password}
-					onChange={handleChange}
-					required
-				/>
+				<div
+					className="password-wrapper">
 
-				<button type="submit">
+					<input
 
-					Login
+						type={
+							showPassword
+
+							?
+
+							"text"
+
+							:
+
+							"password"
+						}
+
+						name="password"
+
+						placeholder="Password"
+
+						value={
+							loginData.password
+						}
+
+						onChange={
+							handleChange
+						}
+
+						required
+					/>
+
+					<button
+
+						type="button"
+
+						className="toggle-password"
+
+						onClick={() =>
+							setShowPassword(
+								!showPassword
+							)
+						}>
+
+						{
+							showPassword
+
+							?
+
+							<FaEyeSlash />
+
+							:
+
+							<FaEye />
+						}
+
+					</button>
+
+				</div>
+
+				<button
+
+					type="submit"
+
+					className="login-btn"
+
+					disabled={
+						loading
+					}>
+
+					{
+						loading
+
+						?
+
+						"Signing In..."
+
+						:
+
+						"Login"
+					}
 
 				</button>
+
+				<p
+					className="register-link">
+
+					Don't have an account?
+
+					<Link
+						to="/register">
+
+						Register
+
+					</Link>
+
+				</p>
 
 			</form>
 
