@@ -8,11 +8,31 @@ from "react";
 import orderService
 	from "../services/orderService";
 
+import "../assets/css/Orders.css";	
 const Orders = () => {
 
 	const [orders,
 		setOrders] =
 		useState([]);
+
+	const loadOrders =
+		async () => {
+
+			try {
+
+				const response =
+					await orderService
+						.getMyOrders();
+
+				setOrders(
+					response.data);
+
+			} catch (error) {
+
+				console.log(
+					error);
+			}
+		};
 
 	useEffect(() => {
 
@@ -20,58 +40,87 @@ const Orders = () => {
 
 	}, []);
 
-	const loadOrders =
-		async () => {
+	if (
+		orders.length === 0
+	) {
 
-		try {
+		return (
 
-			const response =
-				await orderService
-					.getMyOrders();
+			<div
+				className="empty-orders">
 
-			setOrders(
-				response.data);
+				<h2>
 
-		} catch (error) {
+					No Orders Yet
 
-			console.log(error);
-		}
-	};
+				</h2>
+
+			</div>
+		);
+	}
 
 	return (
 
-		<div>
+		<div
+			className="orders-page">
 
 			<h1>
+
 				My Orders
+
 			</h1>
 
 			{
-				orders.map(order => (
+				orders.map(
+					order => (
 
-					<div
-						key={
-							order.orderId
-						}>
+						<div
 
-						<h3>
-							Order #
-							{order.orderId}
-						</h3>
-
-						<p>
-							₹
-							{order.totalAmount}
-						</p>
-
-						<p>
-							{
-								order.orderStatus
+							key={
+								order.orderId
 							}
-						</p>
 
-					</div>
-				))
+							className="order-card">
+
+							<h3>
+
+								Order #
+								{
+									order.orderId
+								}
+
+							</h3>
+
+							<p>
+
+								Amount :
+								₹
+								{
+									order.totalAmount
+								}
+
+							</p>
+
+							<p>
+
+								Order Status :
+								{
+									order.orderStatus
+								}
+
+							</p>
+
+							<p>
+
+								Payment :
+								{
+									order.paymentStatus
+								}
+
+							</p>
+
+						</div>
+					))
 			}
 
 		</div>

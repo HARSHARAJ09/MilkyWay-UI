@@ -19,17 +19,24 @@ import {
 from "react-icons/fa";
 import MobileMenu
 	from "./MobileMenu";
+import ProfileDropdown from "./ProfileDropdown";
+
+import {
+	useCart
+}
+from "../context/CartContext";
+
+
 
 const Navbar = () => {
 
 	const navigate =
 		useNavigate();
 
-		const [cartCount,
-	setCartCount] =
-	useState(0); // Replace with actual cart count from context or state
-	// const cartCount = 0; // Replace with actual cart count from context or state
-
+		const {
+	cartCount
+} = useCart(); 
+	// const cartCount = 0; 
 	const {
 		logout
 	} = useAuth();
@@ -90,12 +97,21 @@ const Navbar = () => {
 					</Link>
 				</li>
 
-				<li>
-					<Link to="/cart">
-						Cart
-						<span> ({ cartCount }) </span>
-					</Link>
-				</li>
+				<Link
+	to="/cart">
+
+	Cart
+
+	<span
+		className="cart-badge">
+
+		{
+			cartCount
+		}
+
+	</span>
+
+</Link>
 
 				<li>
 					<Link to="/orders">
@@ -104,6 +120,8 @@ const Navbar = () => {
 				</li>
 
 			</ul>
+
+			<ProfileDropdown />
 
 			<button 
 				onClick={handleLogout}>

@@ -1,0 +1,48 @@
+.subscription-page {
+
+	max-width: 1100px;
+
+	margin: 40px auto;
+
+	padding: 30px;
+}
+
+.subscription-card {
+
+	background-color: white;
+
+	padding: 25px;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+
+	margin-bottom: 20px;
+}
+
+.subscription-card h3 {
+
+	color: var(--primary-color);
+
+	margin-bottom: 10px;
+}
+
+.subscription-actions {
+
+	display: flex;
+
+	gap: 10px;
+
+	margin-top: 15px;
+}
+
+.subscription-actions button {
+
+	padding: 10px 15px;
+
+	border: none;
+
+	border-radius: 6px;
+
+	cursor: pointer;
+}

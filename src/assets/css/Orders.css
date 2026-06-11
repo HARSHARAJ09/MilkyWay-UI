@@ -1,0 +1,30 @@
+.orders-page {
+
+	padding: 40px 8%;
+}
+
+.order-card {
+
+	background-color: white;
+
+	padding: 20px;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+
+	margin-bottom: 20px;
+}
+.order-card h3 {
+
+	color: var(--primary-color);
+
+	margin-bottom: 10px;
+}
+
+.empty-orders {
+
+	text-align: center;
+
+	padding: 100px;
+}

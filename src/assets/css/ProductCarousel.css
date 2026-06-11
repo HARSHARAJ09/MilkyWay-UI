@@ -1,0 +1,20 @@
+.carousel-section {
+
+	padding: 60px 8%;
+}
+
+.carousel-container {
+
+	display: flex;
+
+	gap: 20px;
+
+	overflow-x: auto;
+
+	scroll-behavior: smooth;
+}
+
+.carousel-item {
+
+	min-width: 280px;
+}

@@ -1,0 +1,49 @@
+.offer-banner {
+
+	margin: 60px 8%;
+
+	padding: 50px;
+
+	border-radius: 20px;
+
+	background:
+		linear-gradient(
+			135deg,
+			#4CAF50,
+			#81C784);
+
+	color: white;
+
+	text-align: center;
+}
+
+.offer-banner h2 {
+
+	font-size: 2.5rem;
+
+	margin-bottom: 15px;
+}
+
+.offer-banner p {
+
+	font-size: 1.2rem;
+
+	margin-bottom: 20px;
+}
+
+.offer-banner button {
+
+	padding: 12px 25px;
+
+	border: none;
+
+	border-radius: 8px;
+
+	cursor: pointer;
+
+	font-weight: bold;
+
+	background-color: white;
+
+	color: #4CAF50;
+}

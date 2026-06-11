@@ -4,15 +4,50 @@ import React,
 	useState
 }
 from "react";
+import {
+	useNavigate
+}
+from "react-router-dom";
 
 import cartService
 	from "../services/cartService";
+
+import "../assets/css/Cart.css";
 
 const Cart = () => {
 
 	const [cartItems,
 		setCartItems] =
 		useState([]);
+	const navigate =
+	useNavigate();
+		
+
+	const loadCart =
+	async () => {
+
+		try {
+
+			const response =
+				await cartService
+					.getCart();
+
+			console.log(
+				"Cart Response :",
+				response.data);
+
+			setCartItems(
+				response.data);
+
+		} catch (error) {
+
+			console.log(
+				"Cart Error :",
+				error.response);
+
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
 
@@ -20,57 +55,114 @@ const Cart = () => {
 
 	}, []);
 
-	const loadCart =
-		async () => {
+		if (
+		cartItems.length === 0
+	) {
 
-		try {
+		return (
 
-			const response =
-				await cartService
-					.getCartItems();
+			<div
+				className="empty-cart">
 
-			setCartItems(
-				response.data);
+				<h2>
 
-		} catch (error) {
+					Your Cart Is Empty
 
-			console.log(error);
-		}
-	};
+				</h2>
+
+			</div>
+		);
+	}
+
+	const grandTotal =
+		cartItems.reduce(
+
+			(total, item) =>
+
+				total +
+				item.totalPrice,
+
+			0
+		);
 
 	return (
 
-		<div>
+		<div
+			className="cart-page">
 
-			<h1>
+				<h1>
+
 				My Cart
+
 			</h1>
 
-			{
-				cartItems.map(item => (
+				{
+				cartItems.map(
+					item => (
 
-					<div
-						key={
-							item.cartItemId
-						}>
+						<div
 
-						<h3>
-							{item.productName}
-						</h3>
+							key={
+								item.cartItemId
+							}
 
-						<p>
-							Qty :
-							{item.quantity}
-						</p>
+							className="cart-item">
 
-						<p>
-							₹
-							{item.totalPrice}
-						</p>
+							<div>
 
-					</div>
-				))
+								<h3>
+
+									{
+										item.productName
+									}
+
+								</h3>
+<p>
+
+									Qty :
+									{
+										item.quantity
+									}
+
+								</p>
+
+							</div>
+							<div>
+
+								₹
+								{
+									item.totalPrice
+								}
+
+							</div>
+
+						</div>
+					))
 			}
+			<div
+	className="cart-summary">
+
+	<h2>
+
+		Total :
+		₹
+		{
+			grandTotal
+		}
+
+	</h2>
+
+	<button
+		onClick={() =>
+			navigate(
+				"/checkout")
+		}>
+
+		Proceed To Checkout
+
+	</button>
+
+</div>
 
 		</div>
 	);

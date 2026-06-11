@@ -12,6 +12,9 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Orders from "./pages/Orders";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
+import OrderSuccess from "./pages/OrderSuccess";
+import Checkout from "./pages/Checkout";
+import Profile from "./pages/Profile";
 
 const App = () => {
 
@@ -70,8 +73,51 @@ const App = () => {
       <ProductDetails />
     </ProtectedRoute>}
     />
+    
+   <Route
+	path="/checkout"
+	element={
+		<ProtectedRoute>
+
+			<Checkout />
+
+		</ProtectedRoute>
+	}
+/>
+
+<Route
+	path="/order-success"
+	element={
+		<OrderSuccess />
+	}
+/>
+
+<Route
+	path="/profile"
+	element={
+		<ProtectedRoute>
+
+			<Profile />
+
+		</ProtectedRoute>
+	}
+/>
+
+<Route
+  path="subscriptions"
+  element={
+    <ProtectedRoute>
+      <div style={{ padding: '20px' }}>
+        <h1>Subscriptions</h1>
+        <p>This is the subscriptions page. Here you can manage your subscriptions and view subscription details.</p>
+      </div>
+    </ProtectedRoute>
+  }
+/>
 
    </Routes>
+
+
 
   </BrowserRouter>
  );

@@ -1,0 +1,18 @@
+.order-success {
+
+	text-align: center;
+
+	padding: 100px 20px;
+}
+
+.order-success h1 {
+
+	color: var(--primary-color);
+
+	margin-bottom: 20px;
+}
+
+.order-success p {
+
+	font-size: 18px;
+}

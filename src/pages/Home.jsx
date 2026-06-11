@@ -31,6 +31,8 @@ import FeaturedCategories from "../components/FeaturedCategories";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Testimonials from "../components/Testimonials";
 import SubscriptionBanner from "../components/SubscriptionBanner";
+import OfferBanner from "../components/OfferBanner";
+import ProductCarousel from "../components/ProductCarousel";
 
 const Home = () => {
 
@@ -76,7 +78,9 @@ const Home = () => {
 
 			<WhyChooseUs />
 
-<FeaturedCategories />
+			<FeaturedCategories />
+
+			<ProductCarousel products={products} />
 
 			<section className="section">
 
@@ -131,6 +135,8 @@ const Home = () => {
 	</div>
 
 </section>
+
+<OfferBanner />
 
 <Testimonials />
 

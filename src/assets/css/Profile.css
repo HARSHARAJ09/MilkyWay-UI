@@ -1,0 +1,165 @@
+.profile-page {
+
+	max-width: 1000px;
+
+	margin: 40px auto;
+
+	padding: 30px;
+
+	background-color: white;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+}
+
+.profile-page h1 {
+
+	margin-bottom: 25px;
+
+	color: var(--primary-color);
+}
+
+.profile-card {
+
+	padding: 20px;
+
+	border: 1px solid #eee;
+
+	border-radius: 10px;
+
+	margin-bottom: 25px;
+}
+
+.profile-card p {
+
+	margin-bottom: 12px;
+}
+
+.address-section {
+
+	margin-top: 30px;
+}
+
+.address-section button {
+
+	background-color: var(--primary-color);
+
+	color: white;
+
+	border: none;
+
+	padding: 10px 20px;
+
+	border-radius: 6px;
+
+	cursor: pointer;
+}
+.profile-page {
+
+	padding: 40px 8%;
+}
+
+.address-form {
+
+	display: flex;
+
+	flex-direction: column;
+
+	gap: 15px;
+
+	background: white;
+
+	padding: 25px;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+
+	margin-bottom: 30px;
+}
+
+.address-form input {
+
+	padding: 12px;
+
+	border: 1px solid #ddd;
+
+	border-radius: 8px;
+}
+
+.address-form button {
+
+	background-color:
+		var(--primary-color);
+
+	color: white;
+
+	border: none;
+
+	padding: 12px;
+
+	border-radius: 8px;
+
+	cursor: pointer;
+}
+
+.address-grid {
+
+	display: grid;
+
+	grid-template-columns:
+		repeat(
+			auto-fit,
+			minmax(
+				280px,
+				1fr));
+
+	gap: 20px;
+}
+
+.address-card {
+
+	background: white;
+
+	padding: 20px;
+
+	border-radius: 12px;
+
+	box-shadow: var(--box-shadow);
+}
+
+.address-card span {
+
+	display: inline-block;
+
+	margin-top: 10px;
+
+	background: green;
+
+	color: white;
+
+	padding: 4px 10px;
+
+	border-radius: 20px;
+}
+
+.address-actions {
+
+	margin-top: 15px;
+
+	display: flex;
+
+	gap: 10px;
+}
+
+.address-actions button {
+
+	padding: 8px 12px;
+
+	border: none;
+
+	border-radius: 6px;
+
+	cursor: pointer;
+}

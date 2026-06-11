@@ -7,12 +7,58 @@ from "react-router-dom";
 
 import "../assets/css/ProductCard.css";
 
+import cartService
+	from "../services/cartService";
+
+import {
+	useCart
+}
+from "../context/CartContext";
+
 const ProductCard = ({
 	product
 }) => {
 
+	const {
+	loadCart
+} = useCart();
+
 	const navigate =
 		useNavigate();
+
+	const handleAddToCart =
+	async () => {
+
+		console.log(
+			"Button Clicked");
+
+		console.log(
+			"Product :",
+			product);
+
+		try {
+
+			const response =
+				await cartService
+					.addToCart(
+						product.id,
+						1);
+
+			console.log(
+				"Success :",
+				response.data);
+
+		} catch (error) {
+
+			console.log(
+				"Error :",
+				error);
+
+			console.log(
+				"Error Response :",
+				error.response);
+		}
+	};
 
 	return (
 
@@ -44,6 +90,7 @@ const ProductCard = ({
 			</h4>
 
 			<button
+				
 				onClick={() =>
 					navigate(
 						`/products/${product.id}`)
@@ -53,10 +100,7 @@ const ProductCard = ({
 
 			</button>
             <button
-	onClick={() =>
-		addToCart(
-			product.id)
-	}>
+	onClick={handleAddToCart}>
 
 	Add To Cart
 

@@ -13,6 +13,8 @@ from "react-router-dom";
 import productService
 	from "../services/productService";
 
+import "../assets/css/ProductDetails.css";
+
 const ProductDetails = () => {
 
 	const { id } =
