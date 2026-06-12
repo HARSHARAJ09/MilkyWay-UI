@@ -29,7 +29,7 @@ const App = () => {
    <Routes>
 
     <Route
-      path="/"
+      path="/MilkyWay-UI"
       element={<Login />}
     />
 
